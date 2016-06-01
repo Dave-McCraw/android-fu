@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Catalogue App</string>
+    <string name="title_detail_activity">Item Detail</string>
+    <string name="title_list_activity">The App</string>
+</resources>
