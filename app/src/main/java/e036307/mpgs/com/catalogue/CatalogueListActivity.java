@@ -3,6 +3,7 @@ package e036307.mpgs.com.catalogue;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,9 +15,12 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import e036307.mpgs.com.catalogue.model.Basket;
+import e036307.mpgs.com.catalogue.model.BasketListener;
 import e036307.mpgs.com.catalogue.model.CatalogueItem;
 import e036307.mpgs.com.catalogue.model.CatalogueListener;
 import e036307.mpgs.com.catalogue.model.CatalogueRetriever;
@@ -42,6 +46,7 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
 
     public static final List<CatalogueItem> ITEMS = new ArrayList<CatalogueItem>();
     public static final Map<String, CatalogueItem> ITEM_MAP = new HashMap<String, CatalogueItem>();
+    public static final Basket BASKET = new Basket<CatalogueItem>();
 
     @Override
     public void onTaskComplete(List<CatalogueItem> s) {
@@ -134,6 +139,17 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
             }
         });
 
+        ImageButton settingsButton = (ImageButton) findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, SettingsActivity.class);
+
+                context.startActivity(intent);
+            }
+        });
+
         recyclerView = findViewById(R.id.suit_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
@@ -145,7 +161,19 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
+
+        final TextView cartBadge = (TextView) findViewById(R.id.cartBadge);
+        if (null != cartBadge) {
+            int size = 0;
+            if (null != BASKET.basketItems){
+                size = BASKET.basketItems.size();
+            }
+            cartBadge.setText(String.valueOf(size));
+
+        }
     }
+
+
     void refreshItems() {
         // Load items
 

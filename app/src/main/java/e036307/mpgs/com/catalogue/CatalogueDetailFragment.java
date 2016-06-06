@@ -3,7 +3,10 @@ package e036307.mpgs.com.catalogue;
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
+import e036307.mpgs.com.catalogue.model.Basket;
 import e036307.mpgs.com.catalogue.model.CatalogueItem;
 
 /**
@@ -50,18 +54,16 @@ public class CatalogueDetailFragment extends Fragment {
             // to load content from a content provider.
             mItem = CatalogueListActivity.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
-            }
+            FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CatalogueListActivity.BASKET.addItem(mItem);
+                    Snackbar.make(view, "Item added to basket", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
 
-            ImageView img = (ImageView) activity.findViewById(R.id.header_bk);
-            if (appBarLayout != null) {
-                img.setImageBitmap(CatalogueListActivity.mMemoryCache.get(mItem.thumbnailSource));
-                img.setAlpha(0.2f);
-                System.out.println("Set image in detail fragment toolbar using MAD SKILLZ");
-            }
         }
     }
 
@@ -73,7 +75,20 @@ public class CatalogueDetailFragment extends Fragment {
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.detail_price)).setText("£"+(new DecimalFormat("#.00").format( mItem.priceMinorUnits/100)));
-            ((TextView) rootView.findViewById(R.id.detail_text)).setText(mItem.details);
+            ((TextView) rootView.findViewById(R.id.detail_header_text)).setText(mItem.detailHeader);
+            ((TextView) rootView.findViewById(R.id.detail_header_text)).setText(Html.fromHtml(mItem.details));
+
+            Activity activity = this.getActivity();
+            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+            if (appBarLayout != null) {
+                appBarLayout.setTitle(mItem.content);
+            }
+
+            ImageView img = (ImageView) activity.findViewById(R.id.header_bk);
+            if (img != null) {
+                img.setImageBitmap(CatalogueListActivity.mMemoryCache.get(mItem.thumbnailSource));
+                img.setAlpha(0.2f);
+            }
         }
 
         return rootView;
