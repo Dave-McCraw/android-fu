@@ -14,5 +14,5 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".CatalogueListActivity"
-    tools:listitem="@layout/catalogue_list_item" />
+    tools:listitem="@layout/basket_list_item" />
 </android.support.v4.widget.SwipeRefreshLayout>

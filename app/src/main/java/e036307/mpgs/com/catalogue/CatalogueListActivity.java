@@ -46,7 +46,7 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
 
     public static final List<CatalogueItem> ITEMS = new ArrayList<CatalogueItem>();
     public static final Map<String, CatalogueItem> ITEM_MAP = new HashMap<String, CatalogueItem>();
-    public static final Basket BASKET = new Basket<CatalogueItem>();
+    public static final Basket BASKET = new Basket();
 
     @Override
     public void onTaskComplete(List<CatalogueItem> s) {
@@ -130,14 +130,7 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         ImageButton settingsButton = (ImageButton) findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +138,16 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, SettingsActivity.class);
+
+                context.startActivity(intent);
+            }
+        });
+        ImageButton cartButton = (ImageButton) findViewById(R.id.cartButton);
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, BasketActivity.class);
 
                 context.startActivity(intent);
             }
