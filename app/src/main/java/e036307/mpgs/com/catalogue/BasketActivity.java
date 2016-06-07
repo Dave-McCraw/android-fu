@@ -16,14 +16,18 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import e036307.mpgs.com.catalogue.images.DownloadBitmapTask;
+import e036307.mpgs.com.catalogue.model.BasketCatalogueItem;
 import e036307.mpgs.com.catalogue.model.CatalogueItem;
 
 public class BasketActivity extends AppCompatActivity {
@@ -48,33 +52,34 @@ public class BasketActivity extends AppCompatActivity {
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
-        TextView totalLine = (TextView) findViewById(R.id.totalLine);
+         totalLine = (TextView) findViewById(R.id.totalLine);
         assert totalLine != null;
         if (null == CatalogueListActivity.BASKET.basketItems || CatalogueListActivity.BASKET.basketItems.isEmpty()) {
             totalLine.setText("Basket empty");
             // button disable!
         } else {
-            totalLine.setText(CatalogueListActivity.BASKET.basketItems.size() + " items totalling " + ("£" + (new DecimalFormat("#.00").format(CatalogueListActivity.BASKET.getValue() / 100))));
+            totalLine.setText(CatalogueListActivity.BASKET.count() + " items totalling " + ("£" + (new DecimalFormat("#.00").format(CatalogueListActivity.BASKET.getValue() / 100))));
         }
     }
+    TextView totalLine;
 
     SimpleItemRecyclerViewAdapter adapter;
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        adapter =  new SimpleItemRecyclerViewAdapter(CatalogueListActivity.BASKET.basketItems == null ? new ArrayList<CatalogueItem>() : CatalogueListActivity.BASKET.basketItems);
+        adapter =  new SimpleItemRecyclerViewAdapter(CatalogueListActivity.BASKET.basketItems);
         recyclerView.setAdapter(adapter);
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<CatalogueItem> mValues;
+        private final List<BasketCatalogueItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<CatalogueItem> items) {
+        public SimpleItemRecyclerViewAdapter(Map<String, BasketCatalogueItem> items) {
             assert items != null;
 
             // Where there are multiple of the same item, what do we do?
-            mValues = items;
+            mValues = new ArrayList<BasketCatalogueItem>(items.values());
         }
 
         @Override
@@ -89,15 +94,15 @@ public class BasketActivity extends AppCompatActivity {
             holder.mItem = mValues.get(position);
 
             // Set the thumbnail image using the property of the suititem
-            int resID = getResources().getIdentifier(mValues.get(position).thumbnailSource, "drawable",  getPackageName());
+            int resID = getResources().getIdentifier(mValues.get(position).item.thumbnailSource, "drawable",  getPackageName());
             //     holder.mThumbnail.setImageResource(R.drawable.shirt_small);
             // holder.mThumbnail.setImageResource(resID);
 
-            Bitmap bm= CatalogueListActivity.mMemoryCache.get(mValues.get(position).thumbnailSource);
+            Bitmap bm= CatalogueListActivity.mMemoryCache.get(mValues.get(position).item.thumbnailSource);
             if(  bm == null ){
-                System.out.println("Cache miss on "+mValues.get(position).thumbnailSource);
+                System.out.println("Cache miss on "+mValues.get(position).item.thumbnailSource);
                 DownloadBitmapTask task = new DownloadBitmapTask(holder.mThumbnail, CatalogueListActivity.mMemoryCache);
-                task.execute(mValues.get(position).thumbnailSource);
+                task.execute(mValues.get(position).item.thumbnailSource);
             } else {
                 holder.mThumbnail.setImageBitmap(bm);
                 System.out.println("Cache hit");
@@ -105,9 +110,9 @@ public class BasketActivity extends AppCompatActivity {
 
             //   System.out.println("Changing thumbnail to resource "+resID+" based on "+mValues.get(position).thumbnailSource);
 
-            holder.mItemCount.setText("1");
+            holder.mItemCount.setText(String.valueOf(mValues.get(position).quantity));
 
-            holder.mTitle.setText(mValues.get(position).content);
+            holder.mTitle.setText(mValues.get(position).item.content);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,7 +120,7 @@ public class BasketActivity extends AppCompatActivity {
 
                         Context context = v.getContext();
                         Intent intent = new Intent(context, CatalogueStandaloneDetailActivity.class);
-                        intent.putExtra(CatalogueDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(CatalogueDetailFragment.ARG_ITEM_ID, holder.mItem.item.id);
 
                         context.startActivity(intent);
 
@@ -133,7 +138,8 @@ public class BasketActivity extends AppCompatActivity {
             public final ImageView mThumbnail;
             public final TextView mTitle;
             public final TextView mItemCount;
-            public CatalogueItem mItem;
+            public BasketCatalogueItem mItem;
+            public final View mRemoveItem;
 
             public ViewHolder(View view) {
                 super(view);
@@ -141,6 +147,7 @@ public class BasketActivity extends AppCompatActivity {
                 mThumbnail = (ImageView) view.findViewById(R.id.thumbnail);
                 mTitle = (TextView) view.findViewById(R.id.item_name);
                 mItemCount = (TextView) view.findViewById(R.id.item_count);
+                mRemoveItem= (ImageButton) view.findViewById(R.id.item_remove);
             }
 
             @Override

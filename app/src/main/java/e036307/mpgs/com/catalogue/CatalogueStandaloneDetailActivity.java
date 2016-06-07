@@ -68,7 +68,10 @@ public class CatalogueStandaloneDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, CatalogueListActivity.class));
+
+           // navigateUpTo(new Intent(this, CatalogueListActivity.class));
+            setResult(RESULT_OK, null);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

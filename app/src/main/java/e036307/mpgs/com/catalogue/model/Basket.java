@@ -2,49 +2,53 @@ package e036307.mpgs.com.catalogue.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by e036307 on 02/06/2016.
  */
 public class Basket {
-    public List<CatalogueItem> basketItems;
-    public Collection<BasketListener<CatalogueItem>> basketListeners;
+    public Map<String,BasketCatalogueItem> basketItems;
 
-    public void Basket() {
-        basketItems =  new ArrayList<CatalogueItem>();
+    public Basket() {
+        basketItems = new HashMap<String, BasketCatalogueItem>();
     }
 
-    public void addListener(BasketListener<CatalogueItem> l){
-        if (null == basketListeners){
-            basketListeners =  new ArrayList<BasketListener<CatalogueItem>>();
+    public void addItem(CatalogueItem i) {
+        if (basketItems.containsKey(i.id)){
+            basketItems.get(i.id).addOne();
+            return;
         }
 
-        basketListeners.add(l);
-
+        basketItems.put (i.id, new BasketCatalogueItem(i));
     }
 
-    public void addItem(CatalogueItem i){
-        if (null == basketItems){
-            basketItems =  new ArrayList<CatalogueItem>();
-        }
-
-        basketItems.add(i);
-
-        if (null != basketListeners){
-            for (BasketListener<CatalogueItem> l : basketListeners){
-                l.notify(this.basketItems);
+    public void removeItem(CatalogueItem i) {
+        if (basketItems.containsKey(i.id)){
+            basketItems.get(i.id).removeOne();
+            if (basketItems.get(i.id).quantity == 0){
+                basketItems.remove(i.id);
             }
         }
-
     }
 
-    public int getValue(){
+    public int getValue() {
         int totalValue = 0;
-        for (CatalogueItem item : basketItems){
-            totalValue+= item.priceMinorUnits;
+        for (String id : basketItems.keySet()) {
+            totalValue += basketItems.get(id).getValue();
         }
 
         return totalValue;
+    }
+
+    public int count() {
+        int counter = 0;
+        for (String id : basketItems.keySet()) {
+            counter += basketItems.get(id).quantity;
+        }
+
+        return counter;
     }
 }

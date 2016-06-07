@@ -1,6 +1,7 @@
 package e036307.mpgs.com.catalogue;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 import e036307.mpgs.com.catalogue.model.Basket;
+import e036307.mpgs.com.catalogue.model.BasketCatalogueItem;
 import e036307.mpgs.com.catalogue.model.CatalogueItem;
 
 /**
@@ -61,20 +63,26 @@ public class CatalogueDetailFragment extends Fragment {
                     CatalogueListActivity.BASKET.addItem(mItem);
                     Snackbar.make(view, "Item added to basket", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+
+                    subtextView.setText(getSubtext());
+
                 }
             });
 
         }
     }
+    private TextView subtextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.catalogue_detail_fragment, container, false);
-
+        subtextView = (TextView) rootView.findViewById(R.id.detail_price);
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.detail_price)).setText("£"+(new DecimalFormat("#.00").format( mItem.priceMinorUnits/100)));
+
+
+            subtextView.setText(getSubtext());
             ((TextView) rootView.findViewById(R.id.detail_header_text)).setText(mItem.detailHeader);
             ((TextView) rootView.findViewById(R.id.detail_header_text)).setText(Html.fromHtml(mItem.details));
 
@@ -92,5 +100,20 @@ public class CatalogueDetailFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    private String getSubtext(){
+
+        String subtext = "£"+(new DecimalFormat("#.00").format( mItem.priceMinorUnits/100));
+
+        BasketCatalogueItem bci = CatalogueListActivity.BASKET.basketItems.get(mItem.id);
+
+        if (null != bci){
+            if (bci.quantity > 0 ){
+                subtext += " ("+bci.quantity+" in cart)";
+            }
+        }
+
+        return subtext;
     }
 }

@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import e036307.mpgs.com.catalogue.model.Basket;
-import e036307.mpgs.com.catalogue.model.BasketListener;
 import e036307.mpgs.com.catalogue.model.CatalogueItem;
 import e036307.mpgs.com.catalogue.model.CatalogueListener;
 import e036307.mpgs.com.catalogue.model.CatalogueRetriever;
@@ -168,9 +167,9 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
         final TextView cartBadge = (TextView) findViewById(R.id.cartBadge);
         if (null != cartBadge) {
             int size = 0;
-            if (null != BASKET.basketItems){
-                size = BASKET.basketItems.size();
-            }
+
+                size = BASKET.count();
+
             cartBadge.setText(String.valueOf(size));
 
         }
@@ -201,6 +200,16 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
     public Bitmap getBitmapFromMemCache(String key) {
         return mMemoryCache.get(key);
     }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Intent refresh = new Intent(this, CatalogueListActivity.class);
+            startActivity(refresh);
+            this.finish();
+        }
+    }
 
     SimpleItemRecyclerViewAdapter adapter;
 
@@ -263,12 +272,14 @@ public class CatalogueListActivity extends AppCompatActivity implements Catalogu
                         Context context = v.getContext();
                         Intent intent = new Intent(context, CatalogueStandaloneDetailActivity.class);
                         intent.putExtra(CatalogueDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-
-                        context.startActivity(intent);
+                        startActivityForResult(intent, 1);
+                        //context.startActivity(intent);
                     }
                 }
+
             });
         }
+
 
         @Override
         public int getItemCount() {
