@@ -53,7 +53,13 @@ public class BasketActivity extends AppCompatActivity {
         setupRecyclerView((RecyclerView) recyclerView);
 
          totalLine = (TextView) findViewById(R.id.totalLine);
-        assert totalLine != null;
+        setTotalLineText();
+
+
+
+    }
+
+    private void setTotalLineText() {assert totalLine != null;
         if (null == CatalogueListActivity.BASKET.basketItems || CatalogueListActivity.BASKET.basketItems.isEmpty()) {
             totalLine.setText("Basket empty");
             // button disable!
@@ -61,6 +67,9 @@ public class BasketActivity extends AppCompatActivity {
             totalLine.setText(CatalogueListActivity.BASKET.count() + " items totalling " + ("£" + (new DecimalFormat("#.00").format(CatalogueListActivity.BASKET.getValue() / 100))));
         }
     }
+
+
+
     TextView totalLine;
 
     SimpleItemRecyclerViewAdapter adapter;
@@ -75,11 +84,11 @@ public class BasketActivity extends AppCompatActivity {
 
         private final List<BasketCatalogueItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(Map<String, BasketCatalogueItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<BasketCatalogueItem> items) {
             assert items != null;
 
             // Where there are multiple of the same item, what do we do?
-            mValues = new ArrayList<BasketCatalogueItem>(items.values());
+            mValues = items;
         }
 
         @Override
@@ -123,6 +132,21 @@ public class BasketActivity extends AppCompatActivity {
                         intent.putExtra(CatalogueDetailFragment.ARG_ITEM_ID, holder.mItem.item.id);
 
                         context.startActivity(intent);
+
+                }
+            });
+
+            holder.mRemoveItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CatalogueListActivity.BASKET.removeItem(holder.mItem.item);
+                    if (CatalogueListActivity.BASKET.countItem(holder.mItem.item.id) == 0){
+                     //   mValues.remove(holder.getAdapterPosition());
+                        adapter.notifyItemRemoved(holder.getAdapterPosition());
+                    } else {
+                        adapter.notifyDataSetChanged();
+                    }
+                    setTotalLineText();
 
                 }
             });

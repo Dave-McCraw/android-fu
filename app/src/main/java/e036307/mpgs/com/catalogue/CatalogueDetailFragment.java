@@ -106,13 +106,11 @@ public class CatalogueDetailFragment extends Fragment {
 
         String subtext = "£"+(new DecimalFormat("#.00").format( mItem.priceMinorUnits/100));
 
-        BasketCatalogueItem bci = CatalogueListActivity.BASKET.basketItems.get(mItem.id);
+        int counter = CatalogueListActivity.BASKET.countItem(mItem.id);
 
-        if (null != bci){
-            if (bci.quantity > 0 ){
-                subtext += " ("+bci.quantity+" in cart)";
+            if (counter > 0 ){
+                subtext += " ("+counter+" in cart)";
             }
-        }
 
         return subtext;
     }

@@ -10,45 +10,60 @@ import java.util.Map;
  * Created by e036307 on 02/06/2016.
  */
 public class Basket {
-    public Map<String,BasketCatalogueItem> basketItems;
+    public List<BasketCatalogueItem> basketItems;
 
     public Basket() {
-        basketItems = new HashMap<String, BasketCatalogueItem>();
+        basketItems = new ArrayList<BasketCatalogueItem>();
     }
 
     public void addItem(CatalogueItem i) {
-        if (basketItems.containsKey(i.id)){
-            basketItems.get(i.id).addOne();
-            return;
+        for (BasketCatalogueItem item : basketItems) {
+            if (item.item.equals(i)) {
+                item.addOne();
+                return;
+            }
         }
 
-        basketItems.put (i.id, new BasketCatalogueItem(i));
+        basketItems.add (new BasketCatalogueItem(i));
     }
 
     public void removeItem(CatalogueItem i) {
-        if (basketItems.containsKey(i.id)){
-            basketItems.get(i.id).removeOne();
-            if (basketItems.get(i.id).quantity == 0){
-                basketItems.remove(i.id);
+        for (BasketCatalogueItem item : basketItems) {
+            if (item.item.equals(i)) {
+                item.removeOne();
+                if (item.quantity == 0){
+                    basketItems.remove(item);
+                }
             }
         }
     }
 
     public int getValue() {
         int totalValue = 0;
-        for (String id : basketItems.keySet()) {
-            totalValue += basketItems.get(id).getValue();
+        for (BasketCatalogueItem item : basketItems) {
+            totalValue += item.getValue();
         }
 
         return totalValue;
     }
 
     public int count() {
+
         int counter = 0;
-        for (String id : basketItems.keySet()) {
-            counter += basketItems.get(id).quantity;
+        for (BasketCatalogueItem item : basketItems) {
+            counter += item.quantity;
         }
 
         return counter;
+    }
+    public int countItem( String itemId) {
+
+        for (BasketCatalogueItem item : basketItems) {
+            if (item.item.id.equals(itemId)){
+                return item.quantity;
+            }
+        }
+
+        return 0;
     }
 }
