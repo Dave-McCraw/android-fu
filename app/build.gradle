@@ -1,4 +1,12 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
+
+def buildTime() {
+    def df = new SimpleDateFormat("yyyy-MM-dd HH:mm")
+    df.setTimeZone(TimeZone.getTimeZone("UTC"))
+    return df.format(new Date())
+}
 
 android {
     compileSdkVersion 23
@@ -8,8 +16,8 @@ android {
         applicationId "e036307.mpgs.com.suits"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionName "${project.VERSION_NAME}   (${buildTime()})"
+        versionCode project.VERSION_CODE.toInteger()
     }
     buildTypes {
         release {

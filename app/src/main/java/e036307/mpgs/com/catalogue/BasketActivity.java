@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.renderscript.RSInvalidStateException;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -16,19 +13,16 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import e036307.mpgs.com.catalogue.images.DownloadBitmapTask;
 import e036307.mpgs.com.catalogue.model.BasketCatalogueItem;
-import e036307.mpgs.com.catalogue.model.CatalogueItem;
 
 public class BasketActivity extends AppCompatActivity {
 
@@ -53,38 +47,40 @@ public class BasketActivity extends AppCompatActivity {
         setupRecyclerView((RecyclerView) recyclerView);
 
          totalLine = (TextView) findViewById(R.id.totalLine);
-        setTotalLineText();
+        checkoutButton = (Button) findViewById(R.id.doCheckoutButton);
+        updateFooter();
 
 
 
     }
 
-    private void setTotalLineText() {assert totalLine != null;
+    Button checkoutButton;
+
+    private void updateFooter() {assert totalLine != null;
         if (null == CatalogueListActivity.BASKET.basketItems || CatalogueListActivity.BASKET.basketItems.isEmpty()) {
             totalLine.setText("Basket empty");
-            // button disable!
+            checkoutButton.setEnabled(false);
         } else {
             totalLine.setText(CatalogueListActivity.BASKET.count() + " items totalling " + ("£" + (new DecimalFormat("#.00").format(CatalogueListActivity.BASKET.getValue() / 100))));
+            checkoutButton.setEnabled(true);
         }
     }
 
-
-
     TextView totalLine;
 
-    SimpleItemRecyclerViewAdapter adapter;
+    BasketRecyclerViewAdapter adapter;
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        adapter =  new SimpleItemRecyclerViewAdapter(CatalogueListActivity.BASKET.basketItems);
+        adapter =  new BasketRecyclerViewAdapter(CatalogueListActivity.BASKET.basketItems);
         recyclerView.setAdapter(adapter);
     }
 
-    public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+    public class BasketRecyclerViewAdapter
+            extends RecyclerView.Adapter<BasketRecyclerViewAdapter.ViewHolder> {
 
         private final List<BasketCatalogueItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<BasketCatalogueItem> items) {
+        public BasketRecyclerViewAdapter(List<BasketCatalogueItem> items) {
             assert items != null;
 
             // Where there are multiple of the same item, what do we do?
@@ -141,12 +137,11 @@ public class BasketActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     CatalogueListActivity.BASKET.removeItem(holder.mItem.item);
                     if (CatalogueListActivity.BASKET.countItem(holder.mItem.item.id) == 0){
-                     //   mValues.remove(holder.getAdapterPosition());
-                        adapter.notifyItemRemoved(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
                     } else {
-                        adapter.notifyDataSetChanged();
+                        notifyDataSetChanged();
                     }
-                    setTotalLineText();
+                    updateFooter();
 
                 }
             });

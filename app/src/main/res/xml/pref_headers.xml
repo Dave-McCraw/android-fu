@@ -3,9 +3,15 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
+        android:fragment="e036307.mpgs.com.catalogue.SettingsActivity$AboutAppPreferenceFragment"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/pref_header_about_app" />
+
+    <header
         android:fragment="e036307.mpgs.com.catalogue.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_general" />
+
 <!--
     <header
         android:fragment="e036307.mpgs.com.catalogue.SettingsActivity$NotificationPreferenceFragment"

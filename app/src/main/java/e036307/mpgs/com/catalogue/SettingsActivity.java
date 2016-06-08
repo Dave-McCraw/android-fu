@@ -4,6 +4,8 @@ package e036307.mpgs.com.catalogue;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -18,6 +20,8 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
@@ -41,13 +45,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
-            navigateUpTo(new Intent(this, CatalogueListActivity.class));
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -141,6 +139,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setupActionBar();
     }
 
@@ -178,11 +177,53 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
-                || GeneralPreferenceFragment.class.getName().equals(fragmentName);
+                || GeneralPreferenceFragment.class.getName().equals(fragmentName)
+                || AboutAppPreferenceFragment.class.getName().equals(fragmentName);
             //    || DataSyncPreferenceFragment.class.getName().equals(fragmentName)
             //    || NotificationPreferenceFragment.class.getName().equals(fragmentName);
     }
 
+
+
+    /**
+     * This fragment shows general preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class AboutAppPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_about_app);
+            setHasOptionsMenu(true);
+
+
+            String version = "-1";
+
+            PackageInfo pInfo = null;
+            try {
+                pInfo = getActivity().getPackageManager().getPackageInfo(BuildConfig.APPLICATION_ID, 0);
+                version = pInfo.versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            Preference pref1 = findPreference( "app_version" );
+            pref1.setSummary(version);
+
+        }
+
+/*
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                getFragmentManager().popBackStack();
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        } */
+    }
     /**
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
