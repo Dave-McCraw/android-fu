@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:drawable="@android:color/darker_gray"/>
+    <item android:drawable="@android:color/black" />
 
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/background_480_765"
-            />
+            android:src="@drawable/background_480_790"
+            android:tileMode="disabled" />
     </item>
 
 </layer-list>

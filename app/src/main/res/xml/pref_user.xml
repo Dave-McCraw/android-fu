@@ -1,100 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orderingFromXml="true">
+
+</PreferenceScreen>
+<!--
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/pref_about_you" >
     <EditTextPreference
         android:capitalize="words"
-        android:defaultValue="@string/pref_default_forename"
         android:inputType="textCapWords"
-        android:key="forename"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:defaultValue="@string/pref_default_forename"
+        android:key="forename"
         android:title="@string/pref_forename_label" />
 
     <EditTextPreference
         android:capitalize="words"
-        android:defaultValue="@string/pref_default_surname"
         android:inputType="textCapWords"
-        android:key="surname"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:defaultValue="@string/pref_default_surname"
+        android:key="surname"
         android:title="@string/pref_surname_label" />
 
     <EditTextPreference
         android:capitalize="words"
-        android:defaultValue="@string/pref_default_email"
         android:inputType="textCapWords"
-        android:key="email"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:defaultValue="@string/pref_default_email"
+        android:key="email"
         android:title="@string/pref_email_label" />
 
     <EditTextPreference
         android:capitalize="words"
-        android:defaultValue="@string/pref_default_phone"
         android:inputType="textCapWords"
-        android:key="phone"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:defaultValue="@string/pref_default_phone"
+        android:key="phone"
         android:title="@string/pref_phone_label" />
 </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_address" >
 
         <EditTextPreference
             android:capitalize="words"
-            android:defaultValue="@string/pref_default_street"
             android:inputType="textCapWords"
-            android:key="street"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="@string/pref_street_label" />
+            android:defaultValue="@string/pref_default_street"
+            android:key="street"
+            android:title="@string/pref_label_street" />
         <EditTextPreference
             android:capitalize="words"
-            android:defaultValue="@string/pref_default_street2"
             android:inputType="textCapWords"
-            android:key="street2"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
+            android:defaultValue="@string/pref_default_street2"
+            android:key="street2"
             android:title="@string/pref_street2_label" />
         <EditTextPreference
             android:capitalize="words"
-            android:defaultValue="@string/pref_default_city"
             android:inputType="textCapWords"
-            android:key="city"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
+            android:defaultValue="@string/pref_default_city"
+            android:key="city"
             android:title="@string/pref_city_label" />
         <EditTextPreference
             android:capitalize="words"
-            android:defaultValue="@string/pref_default_state"
             android:inputType="textCapWords"
-            android:key="state"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
+            android:defaultValue="@string/pref_default_state"
+            android:key="state"
             android:title="@string/pref_state_label" />
         <EditTextPreference
             android:capitalize="words"
-            android:defaultValue="@string/pref_default_postcode"
             android:inputType="textCapWords"
-            android:key="postcode"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
+            android:defaultValue="@string/pref_default_postcode"
+            android:key="postcode"
             android:title="@string/pref_postcode_label" />
         <EditTextPreference
             android:capitalize="words"
-            android:defaultValue="@string/pref_default_country"
             android:inputType="textCapWords"
-            android:key="country"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
+            android:defaultValue="@string/pref_default_country"
+            android:key="country"
             android:title="@string/pref_country_label" />
         </PreferenceCategory>
 </PreferenceScreen>
+-->

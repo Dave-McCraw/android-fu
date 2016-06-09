@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.mpgs.asma.BasketActivity"
+    tools:context=".basket.BasketActivity"
     tools:showIn="@layout/activity_basket">
 
     <FrameLayout
@@ -24,14 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/suit_list"
+                android:id="@+id/basket_list"
                 android:name="e036307.mpgs.com.suits.SuitListFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".CatalogueListActivity"
+                tools:context=".catalogue.CatalogueListActivity"
                 tools:listitem="@layout/catalogue_list_item" />
         </android.support.v4.widget.SwipeRefreshLayout>
     </FrameLayout>

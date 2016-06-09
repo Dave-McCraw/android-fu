@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.mpgs.asma.BasketActivity">
+    tools:context=".basket.BasketActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
         app:layout_anchorGravity="bottom">
 
         <TextView
-            android:id="@+id/totalLine"
+            android:id="@+id/footerText"
             android:layout_marginLeft="20dp"
             android:layout_alignParentLeft="true"
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/doCheckoutButton"
+            android:id="@+id/checkoutButton"
             android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

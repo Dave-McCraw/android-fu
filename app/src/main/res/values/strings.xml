@@ -3,21 +3,26 @@
     <string name="title_detail_activity">Item Detail</string>
     <string name="title_list_activity">MPGS SDK Demo</string>
     <string name="title_activity_settings">Settings</string>
+
+    <!-- Basket -->
     <string name="title_basket_activity">Shopping Cart</string>
+    <string name="label_basket_empty">Basket empty</string>
+    <plurals name="label_basket">
+        <item quantity="one">%1$d item at £%2$.2f</item>
+        <item quantity="other">%1$d items totalling £%2$.2f</item>
+    </plurals>
 
     <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
     <string name="pref_header_about_app">About MPGS SDK Demo</string>
     <string name="pref_header_general">Your Profile</string>
-    <string name="pref_about_you">About you</string>
-    <string name="pref_address">Delivery address</string>
 
     <!-- 'about you' -->
-    <string name="pref_forename_label">Forename</string>
-    <string name="pref_surname_label">Surname</string>
-    <string name="pref_email_label">Email</string>
-    <string name="pref_phone_label">Phone</string>
+    <string name="pref_category_about_you">About you</string>
+
+    <string name="pref_title_forename">Forename</string>
+    <string name="pref_title_surname">Surname</string>
+    <string name="pref_title_email">Email</string>
+    <string name="pref_title_phone">Phone</string>
 
     <string name="pref_default_forename">John</string>
     <string name="pref_default_surname">Doe</string>
@@ -25,12 +30,14 @@
     <string name="pref_default_phone">0131 538 8446</string>
 
     <!-- Address capture -->
-    <string name="pref_street_label">Street</string>
-    <string name="pref_street2_label">Street (2)</string>
-    <string name="pref_city_label">City</string>
-    <string name="pref_state_label">State</string>
-    <string name="pref_postcode_label">Postcode</string>
-    <string name="pref_country_label">Country</string>
+    <string name="pref_category_address">Delivery address</string>
+
+    <string name="pref_title_street">Street</string>
+    <string name="pref_title_street2">Street (2)</string>
+    <string name="pref_title_city">City</string>
+    <string name="pref_title_state">State</string>
+    <string name="pref_title_postcode">Postcode</string>
+    <string name="pref_title_country">Country</string>
 
     <string name="pref_default_street">Ocean Point One</string>
     <string name="pref_default_street2">94 Ocean Drive</string>
@@ -38,12 +45,5 @@
     <string name="pref_default_state">City of Edinburgh</string>
     <string name="pref_default_postcode">EH6 6JH</string>
     <string name="pref_default_country">Scotland</string>
-    <!--
-    street
-    street2
-    city
-    stateProvince
-    postcodeZip
-    country
-    -->
+
 </resources>

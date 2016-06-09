@@ -9,7 +9,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".CatalogueListActivity">
+    tools:context=".catalogue.CatalogueListActivity">
 
     <!--
     This layout is a two-pane layout for the Suits
@@ -24,14 +24,14 @@
         android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/suit_list"
+        android:id="@+id/basket_list"
         android:name="e036307.mpgs.com.suits.SuitListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".CatalogueListActivity"
+        tools:context=".catalogue.CatalogueListActivity"
         tools:listitem="@layout/catalogue_list_item" />
 </android.support.v4.widget.SwipeRefreshLayout>
 

@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:textIsSelectable="false"
-    tools:context=".CatalogueDetailFragment" />
+    tools:context=".catalogue.DetailFragment" />
     <TextView
         android:id="@+id/detail_header_text"
         style="?android:attr/textAppearanceLarge"
@@ -17,13 +17,13 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         android:textIsSelectable="false"
-        tools:context=".CatalogueDetailFragment" />
+        tools:context=".catalogue.DetailFragment" />
     <TextView
         android:id="@+id/detail_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
         android:textIsSelectable="false"
-        tools:context=".CatalogueDetailFragment" />
+        tools:context=".catalogue.DetailFragment" />
 
 </LinearLayout>

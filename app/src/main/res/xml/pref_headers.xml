@@ -1,26 +1,16 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- These settings headers are only used on tablets. -->
+    <!-- These settings headers are only displayed on tablets, but
+         small screens still introspect this to inflate layouts. -->
 
     <header
-        android:fragment="com.mpgs.asma.SettingsActivity$AboutAppPreferenceFragment"
+        android:fragment="com.mpgs.asma.preferences.PreferencesActivity$AboutAppPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_about_app" />
 
     <header
-        android:fragment="com.mpgs.asma.SettingsActivity$UserPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
+        android:fragment="com.mpgs.asma.preferences.PreferencesActivity$UserPreferenceFragment"
+        android:icon="@drawable/ic_account_circle_black_24dp"
         android:title="@string/pref_header_general" />
 
-<!--
-    <header
-        android:fragment="com.mpgs.asma.SettingsActivity$NotificationPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/pref_header_notifications" />
-
-    <header
-        android:fragment="com.mpgs.asma.SettingsActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
-        android:title="@string/pref_header_data_sync" />
--->
 </preference-headers>
