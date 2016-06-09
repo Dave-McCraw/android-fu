@@ -57,7 +57,7 @@
             android:layout_margin="5dp"
 
             android:textSize="15sp"
-            android:text="Checkout"/>
+            android:text="@string/label_checkout_button"/>
 
     </RelativeLayout>
 

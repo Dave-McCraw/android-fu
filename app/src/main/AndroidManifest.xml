@@ -14,18 +14,18 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".catalogue.CatalogueListActivity"
+            android:name=".catalogue.ItemListActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".catalogue.StandaloneDetailActivity"
             android:label="@string/title_detail_activity"
-            android:parentActivityName=".catalogue.CatalogueListActivity"
+            android:parentActivityName=".catalogue.ItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".catalogue.CatalogueListActivity" />
+                android:value=".catalogue.ItemListActivity" />
         </activity>
 
         <activity

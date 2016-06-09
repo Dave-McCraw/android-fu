@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MPGS SDK Demo</string>
+    <string name="label_basket_empty">Panier est videz</string>
+    <string name="title_basket_activity">Votre Panier</string>
+    <plurals name="label_basket">
+    <item quantity="one">%1$d objet à £%2$.2f</item>
+    <item quantity="other">%1$d objets sont £%2$.2f</item>
+</plurals>
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="title_detail_activity">Détails</string>
+    <string name="title_list_activity">MPGS SDK Demo</string>
+    <string name="pref_title_surname"> Nom de famille</string>
+    <string name="pref_title_forename">Prénom</string>
+    <string name="pref_category_about_you">Au propos de vous</string>
+    <string name="pref_category_address">Adresse de livraison </string>
+    <string name="pref_title_city">Ville</string>
+    <string name="pref_title_country">Pays</string>
+    <string name="pref_title_email">Email</string>
+    <string name="pref_title_postcode">Code postal</string>
+    <string name="pref_title_phone">Téléphone</string>
+    <string name="pref_title_state">Départment</string>
+    <string name="pref_title_street">Rue</string>
+    <string name="pref_title_street2">Rue (2)</string>
+    <string name="pref_header_general">Votre profil</string>
+    <string name="pref_header_about_app">A propos de cette application</string>
+    <string name="label_checkout_button">PAYEZ-VOUS!</string>
+</resources>

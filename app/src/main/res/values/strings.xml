@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Catalogue App</string>
+    <string name="app_name">MPGS SDK Demo</string>
     <string name="title_detail_activity">Item Detail</string>
     <string name="title_list_activity">MPGS SDK Demo</string>
     <string name="title_activity_settings">Settings</string>
@@ -7,6 +7,8 @@
     <!-- Basket -->
     <string name="title_basket_activity">Shopping Cart</string>
     <string name="label_basket_empty">Basket empty</string>
+    <string name="label_checkout_button">CHECKOUT</string>
+
     <plurals name="label_basket">
         <item quantity="one">%1$d item at £%2$.2f</item>
         <item quantity="other">%1$d items totalling £%2$.2f</item>
