@@ -3,23 +3,23 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="e036307.mpgs.com.catalogue.SettingsActivity$AboutAppPreferenceFragment"
+        android:fragment="com.mpgs.asma.SettingsActivity$AboutAppPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_about_app" />
 
     <header
-        android:fragment="e036307.mpgs.com.catalogue.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="com.mpgs.asma.SettingsActivity$UserPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_general" />
 
 <!--
     <header
-        android:fragment="e036307.mpgs.com.catalogue.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="com.mpgs.asma.SettingsActivity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/pref_header_notifications" />
 
     <header
-        android:fragment="e036307.mpgs.com.catalogue.SettingsActivity$DataSyncPreferenceFragment"
+        android:fragment="com.mpgs.asma.SettingsActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
 -->

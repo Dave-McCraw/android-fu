@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="e036307.mpgs.com.catalogue" android:versionCode="1" android:versionName="0.0.1">
+package="com.mpgs.asma">
 
 
 <uses-permission android:name="android.permission.INTERNET" />
@@ -11,7 +11,7 @@ package="e036307.mpgs.com.catalogue" android:versionCode="1" android:versionName
     android:supportsRtl="true" android:theme="@style/AppTheme">
 
 
-    <activity android:name=".CatalogueListActivity" android:label="@string/title_list_activity"
+    <activity android:name=".CatalogueListActivity" android:label=""
         android:theme="@style/AppTheme.NoActionBar">
 
     </activity>
@@ -23,8 +23,7 @@ package="e036307.mpgs.com.catalogue" android:versionCode="1" android:versionName
     <activity android:name=".SettingsActivity" android:label="@string/title_activity_settings" />
     <activity android:name=".BasketActivity" android:label="@string/title_basket_activity"
         android:theme="@style/AppTheme.NoActionBar"></activity>
-    <activity android:name="e036307.mpgs.com.catalogue.SplashActivity" android:label="@string/title_activity_splash"
-        android:theme="@style/SplashTheme">
+    <activity android:name="com.mpgs.asma.SplashActivity"  android:theme="@style/SplashTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
